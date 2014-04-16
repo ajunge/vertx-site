@@ -1,0 +1,6 @@
+{
+  "main": "cl.yaykuy.site.App",
+  "includes": "com.jetdrone~yoke~1.0.3",
+
+  "auto-redeploy": true
+}
