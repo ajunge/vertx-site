@@ -5,9 +5,14 @@ import org.vertx.java.core.Handler;
 
 import com.jetdrone.vertx.yoke.Yoke;
 import com.jetdrone.vertx.yoke.middleware.*;
-import com.jetdrone.vertx.yoke.engine.*;
+import com.jetdrone.vertx.yoke.extras.engine.*;
 
 import java.lang.Override;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class App extends Verticle {
 
@@ -17,7 +22,7 @@ public class App extends Verticle {
       // Create a new Yoke Application
       Yoke app = new Yoke(this);
       // define engines
-      app.engine("html", new StringPlaceholderEngine());
+      app.engine(new HandlebarsEngine("views"));
       // define middleware
       app.use(new Favicon());
       app.use(new Logger());
@@ -38,8 +43,21 @@ public class App extends Verticle {
       router.get("/", new Handler<YokeRequest>() {
           @Override
           public void handle(YokeRequest request) {
-              //request.put("title", "My Yoke Application");
-              request.response().render("views/index.html");
+              request.put("texto", "Texto del server");
+              List<Map> lista = new ArrayList<>();
+              Map<String, String> item;
+              item = new HashMap<>();
+                item.put("numero", "1");
+                item.put("texto", "texto 1");
+                item.put("valor", "valor 1");
+                lista.add(item);
+              item = new HashMap<>();
+                item.put("numero", "2");
+                item.put("texto", "texto 2");
+                item.put("valor", "valor 2");
+                lista.add(item);
+              request.put("lista", lista);
+              request.response().render("index.hbs");
           }
       });
 

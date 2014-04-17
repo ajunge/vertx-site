@@ -17,7 +17,25 @@
     <![endif]-->
   </head>
   <body>
-    <h1>Basico, basico.</h1>
+    <h1>Basico, basico.ss/h1>
+
+    <h3>{{texto}}</h3>
+    <table border=1>
+    <thead>
+      <th>numero</th>
+      <th>texto</th>
+      <th>valor</th>
+    </thead>
+    <tbody>
+        {{#lista}}
+        <tr>
+            <td>{{numero}}</td>
+            <td>{{texto}}</td>
+            <td>{{valor}}</td>
+        </tr>
+        {{/lista}}
+    </tbody>
+</table>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
